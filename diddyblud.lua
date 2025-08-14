@@ -1,1 +1,245 @@
-local s,g,r=game.GetService,game,game.GetService("RunService");local p,c,u=s(g,"Players"),s(g,"CoreGui"),s(g,"RunService");local l=p.LocalPlayer;local a,b=false,nil;local function d(e)local f=""for i=1,#e do f=f..string.char(e[i])end;return f end;local h=Instance.new("ScreenGui")h.Name="PlayerListMaster"h.Parent=c;h.ZIndexBehavior=Enum.ZIndexBehavior.Sibling;h.ResetOnSpawn=false;local j=Instance.new("Frame")j.Name="Container"j.Size=UDim2.new(0,240,0,215)j.Position=UDim2.new(0.5,-120,0.1,0)j.BackgroundColor3=Color3.fromRGB(35,35,45)j.BorderColor3=Color3.fromRGB(85,85,125)j.BorderSizePixel=2;j.Active=true;j.Draggable=true;j.Parent=h;local k=Instance.new("TextLabel")k.Name="Header"k.Size=UDim2.new(1,0,0,30)k.BackgroundColor3=Color3.fromRGB(45,45,55)k.BorderColor3=Color3.fromRGB(85,85,125)k.TextColor3=Color3.fromRGB(255,255,255)k.Text=d({80,108,97,121,101,114,76,105,115,116,77,97,115,116,101,114})k.Font=Enum.Font.SourceSansBold;k.TextSize=16;k.Parent=j;local m=Instance.new("TextButton")m.Name=d({88})m.Size=UDim2.new(0,25,0,25)m.Position=UDim2.new(1,-30,0,2.5)m.BackgroundColor3=Color3.fromRGB(220,40,40)m.BorderColor3=Color3.fromRGB(255,100,100)m.TextColor3=Color3.fromRGB(255,255,255)m.Text=d({88})m.Font=Enum.Font.SourceSansBold;m.TextSize=16;m.Parent=j;local n=Instance.new("TextLabel")n.Size=UDim2.new(0,100,0,20)n.Position=UDim2.new(0.5,-110,0,40)n.BackgroundTransparency=1;n.TextColor3=Color3.fromRGB(255,255,255)n.Text=d({87,97,108,107,32,83,112,101,101,100,58})n.Font=Enum.Font.SourceSans;n.TextXAlignment=Enum.TextXAlignment.Left;n.TextSize=14;n.Parent=j;local o=Instance.new("TextBox")o.Size=UDim2.new(0,100,0,25)o.Position=UDim2.new(0.5,10,0,38)o.BackgroundColor3=Color3.fromRGB(20,20,20)o.BorderColor3=Color3.fromRGB(100,100,100)o.TextColor3=Color3.fromRGB(255,255,255)o.Text="1"o.Font=Enum.Font.SourceSans;o.TextSize=14;o.Parent=j;local q=Instance.new("TextLabel")q.Size=UDim2.new(0,100,0,20)q.Position=UDim2.new(0.5,-110,0,75)q.BackgroundTransparency=1;q.TextColor3=Color3.fromRGB(255,255,255)q.Text=d({65,110,105,109,32,83,112,101,101,100,58})q.Font=Enum.Font.SourceSans;q.TextXAlignment=Enum.TextXAlignment.Left;q.TextSize=14;q.Parent=j;local t=Instance.new("TextBox")t.Size=UDim2.new(0,100,0,25)t.Position=UDim2.new(0.5,10,0,73)t.BackgroundColor3=Color3.fromRGB(20,20,20)t.BorderColor3=Color3.fromRGB(100,100,100)t.TextColor3=Color3.fromRGB(255,255,255)t.Text="15"t.Font=Enum.Font.SourceSans;t.TextSize=14;t.Parent=j;local v=Instance.new("TextLabel")v.Size=UDim2.new(0,100,0,20)v.Position=UDim2.new(0.5,-110,0,110)v.BackgroundTransparency=1;v.TextColor3=Color3.fromRGB(255,255,255)v.Text=d({71,114,97,118,105,116,121,32,40,48,45,49,41,58})v.Font=Enum.Font.SourceSans;v.TextXAlignment=Enum.TextXAlignment.Left;v.TextSize=14;v.Parent=j;local w=Instance.new("TextBox")w.Size=UDim2.new(0,100,0,25)w.Position=UDim2.new(0.5,10,0,108)w.BackgroundColor3=Color3.fromRGB(20,20,20)w.BorderColor3=Color3.fromRGB(100,100,100)w.TextColor3=Color3.fromRGB(255,255,255)w.Text="0.85"w.Font=Enum.Font.SourceSans;w.TextSize=14;w.Parent=j;local x=Instance.new("TextButton")x.Size=UDim2.new(0,170,0,40)x.Position=UDim2.new(0.5,-85,0,155)x.BackgroundColor3=Color3.fromRGB(200,50,50)x.BorderColor3=Color3.fromRGB(255,100,100)x.TextColor3=Color3.fromRGB(255,255,255)x.Text=d({79,102,102})x.Font=Enum.Font.SourceSansBold;x.TextSize=24;x.Parent=j;local function y(z)if not z then return end;local A=z:FindFirstChildOfClass("Humanoid")if A and A.WalkSpeed~=16 then A.WalkSpeed=16 end;local B=z:FindFirstChildOfClass("Humanoid")or z:FindFirstChildOfClass("AnimationController")if B then for _,C in ipairs(B:GetPlayingAnimationTracks())do if C.Speed~=1 then C:AdjustSpeed(1)end end end;local D=z:FindFirstChild("HumanoidRootPart")if D then local E=D:FindFirstChild("FloatyGravity")if E then E:Destroy()end;local F=D:FindFirstChild("FloatyGravityAttachment")if F then F:Destroy()end end end;r.RenderStepped:Connect(function()local z=l.Character;if a then if not z then return end;b=z;local A=z:FindFirstChildOfClass("Humanoid")local D=z:FindFirstChild("HumanoidRootPart")local B=z:FindFirstChildOfClass("Humanoid")or z:FindFirstChildOfClass("AnimationController")if not(A and D and B)then return end;local G=tonumber(o.Text)or 1;local H=tonumber(t.Text)or 15;local I=math.clamp(tonumber(w.Text)or 0.85,0,1)if A.WalkSpeed~=G then A.WalkSpeed=G end;if A.MoveDirection.Magnitude>0.1 then for _,C in ipairs(B:GetPlayingAnimationTracks())do if C.Speed~=H then C:AdjustSpeed(H)end end else for _,C in ipairs(B:GetPlayingAnimationTracks())do if C.Speed~=1 then C:AdjustSpeed(1)end end end;local E=D:FindFirstChild("FloatyGravity")local J=A:GetState()if J==Enum.HumanoidStateType.Freefall then if not E then local F=Instance.new("Attachment",D)F.Name="FloatyGravityAttachment"E=Instance.new("VectorForce",D)E.Name="FloatyGravity"E.Attachment0=F;E.RelativeTo=Enum.ForceRelativeTo.World end;E.Force=Vector3.new(0,A:GetMass()*workspace.Gravity*I,0)else if E then E.Force=Vector3.new(0,0,0)end end else if b then y(b)b=nil end end end)local function K()a=not a;if a then x.Text=d({79,110})x.BackgroundColor3=Color3.fromRGB(50,200,50)x.BorderColor3=Color3.fromRGB(100,255,100)else x.Text=d({79,102,102})x.BackgroundColor3=Color3.fromRGB(200,50,50)x.BorderColor3=Color3.fromRGB(255,100,100)y(l.Character)end end;m.MouseButton1Click:Connect(function()y(l.Character)h:Destroy()end)x.MouseButton1Click:Connect(K)
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+
+local isEnabled = false
+local lastCharacter = nil
+
+local function randomString(length)
+    length = length or math.random(8, 16)
+    local chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    local result = ""
+    for i = 1, length do
+        result = result .. chars:sub(math.random(1, #chars), math.random(1, #chars))
+    end
+    return result
+end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "PlayerListMaster"
+screenGui.Parent = CoreGui 
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screenGui.ResetOnSpawn = false
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "Container"
+mainFrame.Size = UDim2.new(0, 240, 0, 215) 
+mainFrame.Position = UDim2.new(0.5, -120, 0.1, 0)
+mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+mainFrame.BorderColor3 = Color3.fromRGB(85, 85, 125)
+mainFrame.BorderSizePixel = 2
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Name = "Header"
+titleLabel.Size = UDim2.new(1, 0, 0, 30)
+titleLabel.BackgroundColor3 = Color3.fromRGB(45, 45, 55)
+titleLabel.BorderColor3 = Color3.fromRGB(85, 85, 125)
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.Text = "PlayerListMaster"
+titleLabel.Font = Enum.Font.SourceSansBold
+titleLabel.TextSize = 16
+titleLabel.Parent = mainFrame
+
+local closeButton = Instance.new("TextButton")
+closeButton.Name = randomString()
+closeButton.Size = UDim2.new(0, 25, 0, 25)
+closeButton.Position = UDim2.new(1, -30, 0, 2.5)
+closeButton.BackgroundColor3 = Color3.fromRGB(220, 40, 40)
+closeButton.BorderColor3 = Color3.fromRGB(255, 100, 100)
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Text = "X"
+closeButton.Font = Enum.Font.SourceSansBold
+closeButton.TextSize = 16
+closeButton.Parent = mainFrame
+
+local walkSpeedLabel = Instance.new("TextLabel")
+walkSpeedLabel.Name = randomString()
+walkSpeedLabel.Size = UDim2.new(0, 100, 0, 20)
+walkSpeedLabel.Position = UDim2.new(0.5, -110, 0, 40)
+walkSpeedLabel.BackgroundTransparency = 1
+walkSpeedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+walkSpeedLabel.Text = "Walk Speed:"
+walkSpeedLabel.Font = Enum.Font.SourceSans
+walkSpeedLabel.TextXAlignment = Enum.TextXAlignment.Left
+walkSpeedLabel.TextSize = 14
+walkSpeedLabel.Parent = mainFrame
+
+local walkSpeedInput = Instance.new("TextBox")
+walkSpeedInput.Name = randomString()
+walkSpeedInput.Size = UDim2.new(0, 100, 0, 25)
+walkSpeedInput.Position = UDim2.new(0.5, 10, 0, 38)
+walkSpeedInput.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+walkSpeedInput.BorderColor3 = Color3.fromRGB(100, 100, 100)
+walkSpeedInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+walkSpeedInput.Text = "1"
+walkSpeedInput.Font = Enum.Font.SourceSans
+walkSpeedInput.TextSize = 14
+walkSpeedInput.Parent = mainFrame
+
+local animSpeedLabel = Instance.new("TextLabel")
+animSpeedLabel.Name = randomString()
+animSpeedLabel.Size = UDim2.new(0, 100, 0, 20)
+animSpeedLabel.Position = UDim2.new(0.5, -110, 0, 75)
+animSpeedLabel.BackgroundTransparency = 1
+animSpeedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+animSpeedLabel.Text = "Anim Speed:"
+animSpeedLabel.Font = Enum.Font.SourceSans
+animSpeedLabel.TextXAlignment = Enum.TextXAlignment.Left
+animSpeedLabel.TextSize = 14
+animSpeedLabel.Parent = mainFrame
+
+local animSpeedInput = Instance.new("TextBox")
+animSpeedInput.Name = randomString()
+animSpeedInput.Size = UDim2.new(0, 100, 0, 25)
+animSpeedInput.Position = UDim2.new(0.5, 10, 0, 73)
+animSpeedInput.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+animSpeedInput.BorderColor3 = Color3.fromRGB(100, 100, 100)
+animSpeedInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+animSpeedInput.Text = "15"
+animSpeedInput.Font = Enum.Font.SourceSans
+animSpeedInput.TextSize = 14
+animSpeedInput.Parent = mainFrame
+
+local gravityLabel = Instance.new("TextLabel")
+gravityLabel.Name = randomString()
+gravityLabel.Size = UDim2.new(0, 100, 0, 20)
+gravityLabel.Position = UDim2.new(0.5, -110, 0, 110)
+gravityLabel.BackgroundTransparency = 1
+gravityLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+gravityLabel.Text = "Gravity (0-1):"
+gravityLabel.Font = Enum.Font.SourceSans
+gravityLabel.TextXAlignment = Enum.TextXAlignment.Left
+gravityLabel.TextSize = 14
+gravityLabel.Parent = mainFrame
+
+local gravityInput = Instance.new("TextBox")
+gravityInput.Name = randomString()
+gravityInput.Size = UDim2.new(0, 100, 0, 25)
+gravityInput.Position = UDim2.new(0.5, 10, 0, 108)
+gravityInput.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+gravityInput.BorderColor3 = Color3.fromRGB(100, 100, 100)
+gravityInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+gravityInput.Text = "0.85"
+gravityInput.Font = Enum.Font.SourceSans
+gravityInput.TextSize = 14
+gravityInput.Parent = mainFrame
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Name = randomString()
+toggleButton.Size = UDim2.new(0, 170, 0, 40)
+toggleButton.Position = UDim2.new(0.5, -85, 0, 155)
+toggleButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+toggleButton.BorderColor3 = Color3.fromRGB(255, 100, 100)
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Text = "Off"
+toggleButton.Font = Enum.Font.SourceSansBold
+toggleButton.TextSize = 24
+toggleButton.Parent = mainFrame
+
+local function cleanupCheats(char)
+    if not char then return end
+    
+    local hum = char:FindFirstChildOfClass("Humanoid")
+    if hum and hum.WalkSpeed ~= 16 then
+        hum.WalkSpeed = 16
+    end
+
+    local animController = char:FindFirstChildOfClass("Humanoid") or char:FindFirstChildOfClass("AnimationController")
+    if animController then
+        for _, track in ipairs(animController:GetPlayingAnimationTracks()) do
+            if track.Speed ~= 1 then track:AdjustSpeed(1) end
+        end
+    end
+    
+    local rootPart = char:FindFirstChild("HumanoidRootPart")
+    if rootPart then
+        local gravityForce = rootPart:FindFirstChild("FloatyGravity")
+        if gravityForce then gravityForce:Destroy() end
+        local attachment = rootPart:FindFirstChild("FloatyGravityAttachment")
+        if attachment then attachment:Destroy() end
+    end
+end
+
+RunService.RenderStepped:Connect(function()
+    local char = player.Character
+    
+    if isEnabled then
+        if not char then return end
+        lastCharacter = char
+
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        local rootPart = char:FindFirstChild("HumanoidRootPart")
+        local animController = char:FindFirstChildOfClass("Humanoid") or char:FindFirstChildOfClass("AnimationController")
+
+        if not (hum and rootPart and animController) then return end
+
+        local walkSpeed = tonumber(walkSpeedInput.Text) or 1
+        local animSpeed = tonumber(animSpeedInput.Text) or 15
+        local gravityMultiplier = math.clamp(tonumber(gravityInput.Text) or 0.85, 0, 1)
+
+        if hum.WalkSpeed ~= walkSpeed then hum.WalkSpeed = walkSpeed end
+
+        if hum.MoveDirection.Magnitude > 0.1 then
+             for _, track in ipairs(animController:GetPlayingAnimationTracks()) do
+                if track.Speed ~= animSpeed then track:AdjustSpeed(animSpeed) end
+            end
+        else
+            for _, track in ipairs(animController:GetPlayingAnimationTracks()) do
+                if track.Speed ~= 1 then track:AdjustSpeed(1) end
+            end
+        end
+        
+        local gravityForce = rootPart:FindFirstChild("FloatyGravity")
+        local state = hum:GetState()
+        
+        if state == Enum.HumanoidStateType.Freefall then
+            if not gravityForce then
+                local attachment = Instance.new("Attachment", rootPart)
+                attachment.Name = "FloatyGravityAttachment"
+                
+                gravityForce = Instance.new("VectorForce", rootPart)
+                gravityForce.Name = "FloatyGravity"
+                gravityForce.Attachment0 = attachment
+                gravityForce.RelativeTo = Enum.ForceRelativeTo.World
+            end
+            gravityForce.Force = Vector3.new(0, hum:GetMass() * workspace.Gravity * gravityMultiplier, 0)
+        else
+            if gravityForce then
+                gravityForce.Force = Vector3.new(0, 0, 0)
+            end
+        end
+
+    else
+        if lastCharacter then
+            cleanupCheats(lastCharacter)
+            lastCharacter = nil
+        end
+    end
+end)
+
+local function onToggle()
+    isEnabled = not isEnabled
+    
+    if isEnabled then
+        toggleButton.Text = "On"
+        toggleButton.BackgroundColor3 = Color3.fromRGB(50, 200, 50)
+        toggleButton.BorderColor3 = Color3.fromRGB(100, 255, 100)
+    else
+        toggleButton.Text = "Off"
+        toggleButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+        toggleButton.BorderColor3 = Color3.fromRGB(255, 100, 100)
+        cleanupCheats(player.Character)
+    end
+end
+
+closeButton.MouseButton1Click:Connect(function()
+    cleanupCheats(player.Character)
+    screenGui:Destroy()
+end)
+
+toggleButton.MouseButton1Click:Connect(onToggle)
